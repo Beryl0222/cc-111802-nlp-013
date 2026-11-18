@@ -14,5 +14,82 @@
     "observed_at": "2026-11-18T09:05:00Z",
     "text": "教师复核知识关系时应查看课程语境。",
     "context": "课堂练习"
+  },
+  {
+    "record_id": "classroom-entity-relations-lesson-c",
+    "source": "school-synthetic",
+    "revision": 1,
+    "observed_at": "2026-11-18T09:10:00Z",
+    "text": "甲班有个李明，喜欢画画。乙班也有一个李明，擅长跑步。体育老师王老师先介绍了甲班的李明。他随后表扬了乙班的李明。",
+    "context": "同名人物与代称复核",
+    "entities": [
+      {"entity_id": "person-li-jia", "label": "李明", "aliases": ["甲班的李明"]},
+      {"entity_id": "person-li-yi", "label": "李明", "aliases": ["乙班的李明"]},
+      {"entity_id": "teacher-wang", "label": "王老师"},
+      {"entity_id": "activity-drawing", "label": "画画"},
+      {"entity_id": "activity-running", "label": "跑步"}
+    ],
+    "mentions": [
+      {"surface": "李明", "occurrence": 0, "entity_id": "person-li-jia"},
+      {"surface": "李明", "occurrence": 1, "entity_id": "person-li-yi"},
+      {"surface": "王老师", "entity_id": "teacher-wang"},
+      {"surface": "李明", "occurrence": 2, "entity_id": "person-li-jia"},
+      {"surface": "他", "candidates": ["teacher-wang", "person-li-jia"]},
+      {"surface": "李明", "occurrence": 3, "entity_id": "person-li-yi"}
+    ],
+    "relations": [
+      {
+        "predicate": "介绍",
+        "subject_mention": 2,
+        "object_mention": 3,
+        "evidence": "体育老师王老师先介绍了甲班的李明。"
+      },
+      {
+        "predicate": "表扬",
+        "subject_mention": 4,
+        "object_mention": 5,
+        "evidence": "他随后表扬了乙班的李明。"
+      },
+      {
+        "predicate": "同名",
+        "subject_mention": 0,
+        "object_mention": 1,
+        "evidence": "甲班有个李明，喜欢画画。乙班也有一个李明，擅长跑步。"
+      },
+      {
+        "predicate": "喜欢",
+        "subject_mention": 0,
+        "object_entity": "activity-drawing",
+        "evidence": "甲班有个李明，喜欢画画。"
+      },
+      {
+        "predicate": "擅长",
+        "subject_mention": 1,
+        "object_entity": "activity-running",
+        "evidence": "乙班也有一个李明，擅长跑步。"
+      }
+    ]
+  },
+  {
+    "record_id": "classroom-entity-relations-lesson-d",
+    "source": "school-synthetic",
+    "revision": 1,
+    "observed_at": "2026-11-18T09:15:00Z",
+    "text": "李明最近在准备朗读比赛。",
+    "context": "缺少上下文，不能只凭同名归并",
+    "entities": [
+      {"entity_id": "contest-reading", "label": "朗读比赛"}
+    ],
+    "mentions": [
+      {"surface": "李明", "candidates": ["person-li-jia", "person-li-yi"]}
+    ],
+    "relations": [
+      {
+        "predicate": "参加",
+        "subject_mention": 0,
+        "object_entity": "contest-reading",
+        "evidence": "李明最近在准备朗读比赛。"
+      }
+    ]
   }
 ]
